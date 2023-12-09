@@ -1,9 +1,9 @@
 #include "Self_service.h"
 
-void Self_service::write(Invoise* invoise)
+void Self_service::write(Invoise invoise)
 {
 	std::ofstream file(FILE_SELF, std::ios::app);
-	file.write(reinterpret_cast<char*>(invoise), sizeof(Invoise));
+	file.write(reinterpret_cast<char*>(&invoise), sizeof(Invoise));
 	file.close();
 }
 
@@ -38,5 +38,5 @@ void Self_service::createInvoise()
 	in_adress.setNumber_street(num);
 	Invoise invoise(std::string(out_name), std::string(in_name), std::string(description), out_city, in_city, out_adress, in_adress, box);
 	invoise.Print();
-	this->write(&invoise);
+	this->write(invoise);
 }

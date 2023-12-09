@@ -3,11 +3,14 @@
 #include "Adress.h"
 #include "Pacage.h"
 #include <iostream>
+#include <fstream>
 
 
 class Invoise 
 {
+	void setId();
 protected:
+	size_t id;
 	char out_name[SIZE]{ '\0' };
 	char in_name[SIZE]{ '\0' };
 	char description[SIZE]{ '\0' };
@@ -31,6 +34,7 @@ public:
 	Pacage* getBox();
 	size_t getPrice();
 	bool getSuccess();
+	size_t getId() const;
 	void setOut_name(const std::string& name);
 	void setIn_name(const std::string& name);
 	void setDescription(const std::string& name);

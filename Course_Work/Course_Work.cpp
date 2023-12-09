@@ -3,9 +3,9 @@
 #include <vector>
 #include "Adress.h"
 #include "Invoise.h"
-#include "Foreing_Invoice.h"
 #include "Self_service.h"
 #include "Worker.h"
+#include "System.h"
 using namespace std;
 
 
@@ -41,9 +41,20 @@ int main()
 	file.write(reinterpret_cast<char*>(vec.data()), sizeof(Person) * vec.size());
 	file.close();*/
 
-	Worker petro("Shydlovskyi Petro", "Aa11515*");
+	Worker petro("Shydlovskyi Petro", "Aa151515*");
 	std::cout << petro.getEnter();
 	
+	System sys(petro);
+	sys.createInvoise();
+	sys.donePay();
+	sys.closeInvoise();
+	sys.printAll();
+	sys.printId();
+	/*Self_service sys;
+	sys.createInvoise();*/
+
+
+	/*sys.donePay();*/
 }
 
 

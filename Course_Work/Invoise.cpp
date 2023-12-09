@@ -15,6 +15,11 @@ bool Invoise::getSuccess()
 	return this->success;
 }
 
+size_t Invoise::getId() const
+{
+	return this->id;
+}
+
 void Invoise::setOut_name(const std::string& name)
 {
 	for (size_t i = 0; i < 20; i++)
@@ -110,8 +115,19 @@ void Invoise::Print() const
 		std::cout << "Invoice close :(" << std::endl;
 }
 
+void Invoise::setId()
+{
+	std::ifstream file("ID.txt");
+	file >> this->id;
+	file.close();
+	std::ofstream file_("ID.txt", std::ios::trunc);
+	file_ << ++this->id;
+	file_.close();
+}
+
 Invoise::Invoise(const std::string& out_name, const std::string& in_name, const std::string& description, const City& out_city, const City& in_city, const Adress& out_adress, const Adress& in_adress,Pacage* box)
 {
+	setId();
 	setOut_name(out_name);
 	setIn_name(in_name);
 	setDescription(description);
