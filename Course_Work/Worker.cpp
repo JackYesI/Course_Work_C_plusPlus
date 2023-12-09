@@ -52,3 +52,13 @@ bool Worker::getEnter()
 {
 	return this->enter;
 }
+
+std::string Worker::getName()
+{
+	return std::string(this->person.getName());
+}
+
+std::string Worker::getPass()
+{
+	return std::string(this->person.getPassword());
+}

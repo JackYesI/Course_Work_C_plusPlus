@@ -39,6 +39,11 @@ void System::writeClose(Invoise invoise)
 	file.close();
 }
 
+bool System::isEnter()
+{
+	return this->worker.getEnter();
+}
+
 System::System(const Worker& worker)
 {
 	this->worker = worker;
@@ -51,8 +56,18 @@ System::System(const std::string& name, const std::string& password)
 	this->read();
 }
 
+void System::ENTER(const Worker& worker)
+{
+	this->worker = worker;
+}
+
 void System::createInvoise()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	int choise = 0;
 	std::cout << "coise invoise 1) internet;\t2) default;";
 	std::cin >> choise;
@@ -129,6 +144,11 @@ void System::createInvoise()
 
 void System::editInvoise()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	size_t id;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
@@ -191,6 +211,11 @@ void System::editInvoise()
 
 void System::donePay()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	size_t id;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
@@ -219,6 +244,11 @@ void System::donePay()
 
 void System::closeInvoise()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	size_t id;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
@@ -248,6 +278,11 @@ void System::closeInvoise()
 
 void System::deleteInvoise()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	size_t id;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
@@ -268,6 +303,11 @@ void System::deleteInvoise()
 
 void System::printAll()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	for (auto i : data_np)
 	{
 		i.Print();
@@ -276,6 +316,11 @@ void System::printAll()
 
 void System::printId()
 {
+	if (!isEnter())
+	{
+		std::cout << "You are't enter\n";
+		return;
+	}
 	for (auto i : data_np)
 	{
 		std::cout << " " << i.getId() << std::endl;

@@ -15,5 +15,7 @@ public:
 	Worker(const std::string& name, const std::string& passord);
 	void setEnter(const std::string& name, const std::string& passord);
 	bool getEnter();
+	std::string getName();
+	std::string getPass();
 };
 

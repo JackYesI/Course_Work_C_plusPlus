@@ -13,9 +13,12 @@ class System : public Self_service
 	void read();
 	void write();
 	void writeClose(Invoise invoise);
+	bool isEnter();
 public:
+	System() = default;
 	System(const Worker& worker);
 	System(const std::string& name, const std::string& password);
+	void ENTER(const Worker& worker);
 	void createInvoise() override;
 	void editInvoise();
 	void donePay();
