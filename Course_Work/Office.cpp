@@ -12,6 +12,7 @@ Office::Office(const Worker& worker, const size_t& number)
 	this->office_number = number;
 	addWorkers(worker);
 	this->system.ENTER(worker);
+	this->system.read();
 }
 
 void Office::addWorkers(const Worker & worker)
@@ -21,36 +22,94 @@ void Office::addWorkers(const Worker & worker)
 
 void Office::Work()
 {
-	std::cout << "up - create Invoise;\tdown - edit Invoise;\t left - close;\t right - Enter;\t a - pay;\td - delete;\t Esc - exit;" << std::endl;
+	std::cout << "up - create Invoise;\tdown - edit Invoise;\t left - close;\t right - Enter;\t d - pay;\ta - delete;\tp - printAll\to - printId Esc - exit;" << std::endl;
 	char s;
 	do
 	{
 		s = _getch();
 		if (s == 72)
 		{
-			this->system.createInvoise();
+			try
+			{
+				this->system.createInvoise();
+			}
+			catch (Exception_num& ex)
+			{
+				ex.What();
+			}
 		}
 		else if (s == 97)
 		{
-			this->system.deleteInvoise();
+			try
+			{
+				this->system.deleteInvoise();
+			}
+			catch (Exception_num& ex)
+			{
+				ex.What();
+			}
 		}
 		else if (s == 80)
 		{
-			this->system.editInvoise();
+			try
+			{
+				this->system.editInvoise();
+			}
+			catch (Exception_num& ex)
+			{
+				ex.What();
+			}
 		}
 		else if (s == 100)
 		{
-			this->system.donePay();
+			try
+			{
+				this->system.donePay();
+			}
+			catch (Exception_num& ex)
+			{
+				ex.What();
+			}
 		}
 		else if (s == 75)
 		{
-			this->system.closeInvoise();
+			try
+			{
+				this->system.closeInvoise();
+			}
+			catch (Exception_num& ex)
+			{
+				ex.What();
+			}
 		}
 		else if (s == 77)
 		{
-			this->system.ENTER(workers[0]);
+			try
+			{
+				std::string index_;
+				int index;
+				std::cout << "Enter index workera :: ";
+				std::cin >> index_;
+				index = str_int(index_);
+				if (index == -1) throw Exception_num("index No number");
+				if (!(0 <= index and index < workers.size())) throw Exception_num("Index no in interwal");
+				this->system.ENTER(workers[index]);
+			}
+			catch (Exception_num& ex)
+			{
+				ex.What();
+			}
+		}
+		else if (s == 112)
+		{
+			this->system.printAll();
+		}
+		else if (s == 111)
+		{
+			this->system.printId();
 		}
 		/// printAll()
+		
 		/// printId()
 	} while (s != 27);
 }
@@ -66,8 +125,11 @@ void Office::enterInSystem(std::string& name)
 		return worker.getName() == name;
 		});
 
-	if (it != workers.end())
+	if (it != workers.end()) {
 		(*it).setEnter(name, (*it).getPass());
+		std::cout << "you in\n";
+	}
+		
 }
 
 void Office::exitOutSystem(std::string& name)
@@ -82,7 +144,14 @@ void Office::exitOutSystem(std::string& name)
 
 void Office::selfCreate()
 {
-	this->system_self.createInvoise();
+	try
+	{
+		this->system_self.createInvoise();
+	}
+	catch (Exception_num& ex)
+	{
+		ex.What();
+	}
 }
 
 

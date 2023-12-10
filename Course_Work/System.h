@@ -10,7 +10,6 @@ class System : public Self_service
 	Worker worker;
 	std::list<Invoise> data_np;
 	bool isIn();
-	void read();
 	void write();
 	void writeClose(Invoise invoise);
 	bool isEnter();
@@ -26,5 +25,6 @@ public:
 	void deleteInvoise();
 	void printAll();
 	void printId();
+	void read();
 };
 

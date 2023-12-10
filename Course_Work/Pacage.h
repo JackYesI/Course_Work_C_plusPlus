@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include "Exception_num.h"
 
 enum Pacage_Name
 {
@@ -170,10 +170,24 @@ class None_Pag : public Pacage
 {
 	void setSize() override
 	{
-		std::cout << "Enter lenght :: "; std::cin >> this->length;
-		std::cout << "Enter hight  :: "; std::cin >> this->hight;
-		std::cout << "Enter wight  :: "; std::cin >> this->wight;
-		std::cout << "Enter weight :: "; std::cin >> this->weight;
+		std::string num;
+		int num_;
+		std::cout << "Enter lenght :: "; std::cin >> num;
+		num_ = str_int(num);
+		if (num_ == -1) throw Exception_num();
+		this->length = num_;
+		std::cout << "Enter hight  :: "; std::cin >> num;
+		num_ = str_int(num);
+		if (num_ == -1) throw Exception_num();
+		this->hight = num_;
+		std::cout << "Enter wight  :: "; std::cin >> num;
+		num_ = str_int(num);
+		if (num_ == -1) throw Exception_num();
+		this->wight = num_;
+		std::cout << "Enter weight :: "; std::cin >> num;
+		num_ = str_int(num);
+		if (num_ == -1) throw Exception_num();
+		this->weight = num_;
 	}
 public:
 	None_Pag()

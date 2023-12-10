@@ -129,7 +129,8 @@
   <ItemGroup>
     <ClCompile Include="Adress.cpp" />
     <ClCompile Include="City.cpp" />
-    <ClCompile Include="Course_Work.cpp" />
+    <ClCompile Include="Exception_num.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Invoise.cpp" />
     <ClCompile Include="Office.cpp" />
     <ClCompile Include="Person.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Adress.h" />
     <ClInclude Include="City.h" />
+    <ClInclude Include="Exception_num.h" />
     <ClInclude Include="Invoise.h" />
     <ClInclude Include="Office.h" />
     <ClInclude Include="Pacage.h" />

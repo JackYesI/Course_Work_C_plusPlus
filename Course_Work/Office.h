@@ -5,6 +5,7 @@
 #include <vector>
 #include "Worker.h"
 #include "System.h"
+#include "Exception_num.h"
 
 class Office
 {

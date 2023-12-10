@@ -69,8 +69,11 @@ void System::createInvoise()
 		return;
 	}
 	int choise = 0;
+	std::string choise_;
 	std::cout << "coise invoise 1) internet;\t2) default;";
-	std::cin >> choise;
+	std::cin >> choise_;
+	choise = str_int(choise_);
+	if (choise == -1) throw Exception_num();
 	switch (choise)
 	{
 	case 1:
@@ -86,22 +89,29 @@ void System::createInvoise()
 		Adress out_adress, in_adress;
 		Pacage* box;
 		std::cout << "What type of pacage need (1 - box / 2 - pag) :: ";
-		int choise_;
+		std::string choise_;
 		std::cin >> choise_;
-		switch (choise_)
+		int choise;
+		choise = str_int(choise_);
+		if (choise == -1) throw Exception_num();
+		switch (choise)
 		{
 		case 1: 
 		{
-			std::cout << "Choose box 0.5, 1, 2, 5, 10, 15, 20, 30 :: ";
+			std::cout << "Choose box 1, 2, 5, 10, 15, 20, 30 :: ";
 			std::cin >> choise_;
-			Box pag(static_cast<Pacage_Name>(choise_));
+			choise = str_int(choise_);
+			if (choise == -1) throw Exception_num();
+			Box pag(static_cast<Pacage_Name>(choise));
 			box = &pag;
 			break;
 		}
 		case 2:
 		{
 			std::cout << "Choose pag 2, 4 :: "; std::cin >> choise_;
-			Pag pag(static_cast<Pacage_Name>(choise_));
+			choise = str_int(choise_);
+			if (choise == -1) throw Exception_num();
+			Pag pag(static_cast<Pacage_Name>(choise));
 			box = &pag;
 			break;
 		}
@@ -111,7 +121,8 @@ void System::createInvoise()
 			break;
 		}
 
-		size_t num;
+		std::string num_;
+		int num;
 		std::cout << "Enter out name    :: "; std::cin.ignore(); std::cin.getline(out_name, 20);
 		std::cout << "Enter in name     :: "; std::cin.ignore(); std::cin.getline(in_name, 20);
 		std::cout << "Enter description :: "; std::cin.ignore(); std::cin.getline(description, 20);
@@ -119,17 +130,25 @@ void System::createInvoise()
 		in_city.set();
 		out_adress.setName_street();
 		std::cout << "Enter number of post (out) :: ";
-		std::cin >> num;
+		std::cin >> num_;
+		num = str_int(num_);
+		if (num == -1) throw Exception_num();
 		out_adress.setNumber_np(num);
 		std::cout << "Enter number of street (out) :: ";
-		std::cin >> num;
+		std::cin >> num_;
+		num = str_int(num_);
+		if (num == -1) throw Exception_num();
 		out_adress.setNumber_street(num);
 		in_adress.setName_street();
 		std::cout << "Enter number of post (in) :: ";
-		std::cin >> num;
+		std::cin >> num_;
+		num = str_int(num_);
+		if (num == -1) throw Exception_num();
 		in_adress.setNumber_np(num);
 		std::cout << "Enter number of street (in) :: ";
-		std::cin >> num;
+		std::cin >> num_;
+		num = str_int(num_);
+		if (num == -1) throw Exception_num();
 		in_adress.setNumber_street(num);
 		Invoise invoise(std::string(out_name), std::string(in_name), std::string(description), out_city, in_city, out_adress, in_adress, box);
 		invoise.Print();
@@ -149,20 +168,26 @@ void System::editInvoise()
 		std::cout << "You are't enter\n";
 		return;
 	}
-	size_t id;
+	std::string id;
+	int id_;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
+	id_ = str_int(id);
+	if (id_ == -1) throw Exception_num();
 
-	auto it = std::find_if(data_np.begin(), data_np.end(), [id](const Invoise& book)
+	auto it = std::find_if(data_np.begin(), data_np.end(), [id_](const Invoise& book)
 		{
-			return (book.getId() == id);
+			return (book.getId() == id_);
 		});
 
 	if (it != data_np.end())
 	{
 		std::cout << "What you want to edit:\n1) out name;\n2) in name;\n3) in city;\n4) in adress\n";
+		std::string choice_;
 		int choice;
-		std::cin >> choice;
+		std::cin >> choice_;
+		choice = str_int(choice_);
+		if (choice == -1) throw Exception_num();
 		switch (choice)
 		{
 		case 1:
@@ -189,13 +214,18 @@ void System::editInvoise()
 		case 4:
 		{
 			Adress in_adress;
-			size_t num;
+			std::string num_;
+			int num;
 			in_adress.setName_street();
 			std::cout << "Enter new num Nova Post :: ";
-			std::cin >> num;
+			std::cin >> num_;
+			num = str_int(num_);
+			if (num == -1) throw Exception_num();
 			in_adress.setNumber_np(num);
 			std::cout << "Enter new num of street :: ";
 			std::cin >> num;
+			num = str_int(num_);
+			if (num == -1) throw Exception_num();
 			in_adress.setNumber_street(num);
 			break;
 		}
@@ -216,13 +246,16 @@ void System::donePay()
 		std::cout << "You are't enter\n";
 		return;
 	}
-	size_t id;
+	std::string id;
+	int id_;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
+	id_ = str_int(id);
+	if (id_ == -1) throw Exception_num();
 
-	auto it = std::find_if(data_np.begin(), data_np.end(), [id](const Invoise& book)
+	auto it = std::find_if(data_np.begin(), data_np.end(), [id_](const Invoise& book)
 		{
-			return (book.getId() == id);
+			return (book.getId() == id_);
 		});
 
 	if (it != data_np.end()) {
@@ -249,13 +282,16 @@ void System::closeInvoise()
 		std::cout << "You are't enter\n";
 		return;
 	}
-	size_t id;
+	std::string id;
+	int id_;
 	std::cout << "Enter id of Invoise :: ";
 	std::cin >> id;
+	id_ = str_int(id);
+	if (id_ == -1) throw Exception_num();
 
-	auto it = std::find_if(data_np.begin(), data_np.end(), [id](const Invoise& book)
+	auto it = std::find_if(data_np.begin(), data_np.end(), [id_](const Invoise& book)
 		{
-			return (book.getId() == id);
+			return (book.getId() == id_);
 		});
 
 	if (it != data_np.end())
